@@ -86,7 +86,7 @@ def set_new_price(title, price):
 
 def clear_month(first_day_month):
     with session_factory() as session:
-        session.execute(text(f"delete from Income where date(created_at) >= {first_day_month.strftime("%Y-%m-%d")}"))
+        session.execute(text(f"delete from Income where date(created_at) >= {first_day_month.strftime('%Y-%m-%d')}"))
         session.commit()
     return "Данные за текущий месяц очищены"
     
