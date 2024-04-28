@@ -6,9 +6,10 @@ LEXICON_RU: dict[str, str] = {
 MAIN_MENU_COMMANDS: dict[str, str] = {
     '/start': "Старт бота",
     "/account": "Состояние счета",
+    "/remove_last": "Удалить последнюю запись",
+    "/clear_month": "Очистить данные за месяц",
     "/settings": "Настройка цен",
-    "/help": "Помощь",
-    "/delete": "Удалить аккаунт"
+    "/help": "Помощь"
 }
 
 ERROR_MSG: dict[str, str] = {

@@ -150,14 +150,17 @@ async def state_cancel(msg: Message, state: FSMContext):
     await state.clear()
     await msg.answer(text='Действие отменено', reply_markup=keyboard.keyboard)
 
+@router.message(Command(commands=["clear_month"]), StateFilter(default_state))
+async def clear_month(msg: Message):
+    answer = income.clear_month()
+    await msg.answer(answer)
+
+@router.message(Command(commands=["remove_last"]), StateFilter(default_state))
+async def remove_last(msg: Message):
+    answer = income.remove_last()
+    await msg.answer(answer)
 
 @router.message(StateFilter(default_state))
 async def other(msg: Message):
     await msg.answer(text="Моя твоя не понимать."
                           "Для справки по командам отправьте /help ")
-
-
-@router.message(Command(commands=["clear"]), StateFilter(default_state))
-async def drop_db(msg: Message):
-    answer = income.drop_base()
-    await msg.answer(answer)

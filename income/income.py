@@ -63,6 +63,11 @@ def new_price(data: dict[str, str | int]):
     return answer
 
 
-def drop_base():
-    db.drop_base()
-    return "База очищена. Отправьте команду /start"
+def clear_month():
+    first_day_month = datetime.today().replace(day=1)
+    answer = db.clear_month(first_day_month)
+    return answer
+
+def remove_last():
+    answer = db.remove_last()
+    return answer

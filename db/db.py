@@ -1,4 +1,4 @@
-from sqlalchemy import create_engine, func, select, insert, and_, update
+from sqlalchemy import create_engine, func, select, insert, and_, update, text
 from sqlalchemy.orm import sessionmaker
 from models.models import User, Income, Price
 
@@ -84,8 +84,18 @@ def set_new_price(title, price):
     return f"{title}: {price}"
 
 
-def drop_base():
-    pass
+def clear_month(first_day_month):
+    with session_factory() as session:
+        session.execute(text(f"delete from Income where date(created_at) >= {first_day_month.strftime("%Y-%m-%d")}"))
+        session.commit()
+    return "Данные за текущий месяц очищены"
+    
+
+def remove_last():
+    with session_factory() as session:
+        session.execute(text("delete from Income where pk = (select MAX(pk) from Income)"))
+        session.commit()
+    return "Последняя запись удалена"
 
 
 def check_permission(user_id: int):
